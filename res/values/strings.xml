@@ -1,0 +1,63 @@
+<resources>
+    
+    
+    <string name="service_name">aRoadz Service</string>
+<!--     Default Text  		-->
+    <string name="app_name">aRoadz0</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="ActionBarSherlock">ActionBarSherlock Tutorial</string>
+
+
+
+    <string name="hey_andrei">Hey Andrei!</string>
+    <string name="title_activity_main">aRoadz</string>
+    <string name="gps_enabled">GPS is Enabled</string>
+    <string name="gps_disabled">GPS is Disabled</string>
+    
+<!--     Default Text on Buttons 		-->
+    <string name="btn_internet">Internet</string>
+    
+    <string name="btn_record_off">Start to record</string>
+    <string name="btn_record_on">Recording</string>
+    <string name="btn_gps">GPS</string>
+    <string name="btn_upload">Upload Data</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_calibrate">Remove offset</string>
+    <string name="btn_menu">Menu</string>
+    
+<!--     Default Text on Labels 		-->   
+    <string name="txt_accelerometer">Acc, lin acc, offset </string>
+    <string name="txt_gps">GPS Position: </string>
+    <string name="txt_speed">Speed: </string>
+    <string name="txt_welcome">Welcome back, %1$s!</string>
+    <string name="txt_accuracy">GPS Accuracy: </string>
+    <string name="txt_time">Rec time: </string>
+    <string name="txt_delay">Delay: </string>
+    <string name="txt_gps_lat">Lat: </string>
+    <string name="txt_gps_long">Long: </string>
+
+<!--     Default Text on Labels 		-->     
+    <string name="spnr_prompt">Choose a DELAY</string>
+    <string-array name="spnr_entries">
+        <item>FASTEST</item>
+        <item>GAME</item>
+        <item>UI</item>
+        <item>NORMAL</item>
+    </string-array>
+    
+    <string name="spnr_timer_text">Choose prerecord time [s]</string>
+    <string-array name="spnr_timer_entries">
+        <item>1</item>
+        <item>3</item>
+        <item>6</item>
+        <item>10</item>
+    </string-array>
+    
+<!--     Default UserTab Text 		-->   
+    <string name="txt_name">Name </string>
+    <string name="txt_email">Email</string>
+    <string name="txt_password">Password </string>
+
+</resources>
