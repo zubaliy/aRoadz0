@@ -1,15 +1,17 @@
 package com.example.aroadz0;
 
-import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
  
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.Toast;
  
 
-import android.os.Bundle;
+
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -24,6 +26,8 @@ public class MainActivity extends SherlockFragmentActivity {
     private ActionBar mActionBar;
     private ViewPager mPager;
     private Tab tab;
+    
+    private Button btn_menu;
 	
 	
     @Override
@@ -97,6 +101,12 @@ public class MainActivity extends SherlockFragmentActivity {
         // Create fifth Tab
         tab = mActionBar.newTab().setText("About").setTabListener(tabListener);
         mActionBar.addTab(tab);
+        
+        
+        
+        
+        
+        
  
     }
  
@@ -163,4 +173,8 @@ public class MainActivity extends SherlockFragmentActivity {
             return false;
         }
     };
+    
+    
+    
+
 }
