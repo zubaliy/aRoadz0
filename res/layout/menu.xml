@@ -1,0 +1,30 @@
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Single menu item 
+         Set id, icon and Title for each menu item
+    -->
+    <item android:id="@+id/menu_savetocsv"
+          android:icon="@drawable/like_button"
+          android:title="Save DB to CSV" />
+ 
+    <item android:id="@+id/menu_delete_files"
+          android:icon="@drawable/like_button"
+          android:title="Delete ALL files" />
+ 
+    <item android:id="@+id/menu_user_profile"
+          android:icon="@drawable/like_button"
+          android:title="User Profile" 
+          android:showAsAction="ifRoom"/>
+ 
+    <item android:id="@+id/menu_upload"
+          android:icon="@drawable/like_button"
+          android:title="Upload DB" />
+ 
+    <item android:id="@+id/menu_delete"
+          android:icon="@drawable/like_button"
+          android:title="Delete DB:anomalies" />  
+ 
+    <item android:id="@+id/menu_read_db"
+          android:icon="@drawable/like_button"
+          android:title="Read DB:anomalies" /> 
+</menu>
