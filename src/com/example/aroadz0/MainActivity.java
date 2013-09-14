@@ -5,9 +5,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
  
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.util.Log;
 import android.widget.Toast;
  
 
@@ -26,9 +24,9 @@ public class MainActivity extends SherlockFragmentActivity {
     private ActionBar mActionBar;
     private ViewPager mPager;
     private Tab tab;
-    
-    private Button btn_menu;
-	
+
+	final String LOG_TAG = "MainActivity";
+ 
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,12 +60,15 @@ public class MainActivity extends SherlockFragmentActivity {
         // Set the View Pager Adapter into ViewPager
         mPager.setAdapter(viewpageradapter);
         
+        
+        
         // Capture tab button clicks
         ActionBar.TabListener tabListener = new ActionBar.TabListener() {
  
             @Override
             public void onTabSelected(Tab tab, FragmentTransaction ft) {
                 // Pass the position on tab click to ViewPager
+            	
                 mPager.setCurrentItem(tab.getPosition());
             }
  
@@ -103,36 +104,50 @@ public class MainActivity extends SherlockFragmentActivity {
         mActionBar.addTab(tab);
         
         
-        
-        
-        
-        
- 
+        Log.d(LOG_TAG, "App started");
     }
+    
+    
  
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
  
-        // First Menu Button
-        menu.add("Help")
-                .setOnMenuItemClickListener(this.HelpButtonClickListener)
-                .setIcon(R.drawable.help_button) // Set the menu icon
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+//        // First Menu Button
+//        menu.add("Help")
+//                .setOnMenuItemClickListener(this.HelpButtonClickListener)
+//                .setIcon(R.drawable.help_button) // Set the menu icon
+//                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+// 
+//        // Second Menu Button
+//        menu.add("Like")
+//                .setOnMenuItemClickListener(this.LikeButtonClickListener)
+//                .setIcon(R.drawable.like_button) // Set the menu icon
+//                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+//        
+// 
+//        // Third Menu Button
+//        menu.add("Exit")
+//                .setOnMenuItemClickListener(this.ExitButtonClickListener)
+//                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
  
-        // Second Menu Button
-        menu.add("Like")
-                .setOnMenuItemClickListener(this.LikeButtonClickListener)
-                .setIcon(R.drawable.like_button) // Set the menu icon
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        
- 
-        // Third Menu Button
-        menu.add("Exit")
-                .setOnMenuItemClickListener(this.ExitButtonClickListener)
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
- 
+    	getSupportMenuInflater().inflate(R.menu.mymenu, menu);
         return super.onCreateOptionsMenu(menu);
     }
+    
+    public void mnHelp(MenuItem item) {
+    	Toast.makeText(this, "Help Button", Toast.LENGTH_SHORT).show();
+    }
+    public void mnLike(MenuItem item) {
+    	Toast.makeText(this, "Like Button", Toast.LENGTH_SHORT).show();
+    }
+    public void mnExit(MenuItem item) {
+    	Toast.makeText(this, "Exit Button", Toast.LENGTH_SHORT).show();
+    	// Disappear from screen. Activity is still running. Same as pressing Home-button. 
+    	finish();
+    	// killing Activity-process. Service is still running
+    	//System.exit(0);
+    }
+    
  
     // Capture first menu button click
     OnMenuItemClickListener HelpButtonClickListener = new OnMenuItemClickListener() {
@@ -173,6 +188,41 @@ public class MainActivity extends SherlockFragmentActivity {
             return false;
         }
     };
+
+
+    private String TAG = "States";
+
+	@Override
+	protected void onStart() {
+		Log.d(TAG, "MainActivity: onStart()");
+		super.onStart();
+	}
+	
+	@Override
+	protected void onResume() {
+		Log.d(TAG, "MainActivity: onResume()");
+		super.onResume();
+	}
+	
+	@Override
+	protected void onPause() {
+		Log.d(TAG, "MainActivity: onPause()");
+		super.onPause();
+	}
+
+	@Override
+	protected void onStop() {
+		Log.d(TAG, "MainActivity: onStop()");
+		super.onStop();
+	}
+
+	@Override
+	protected void onDestroy() {
+		Log.d(TAG, "MainActivity: onDestroy()");
+		super.onDestroy();
+		
+	}
+   
     
     
     

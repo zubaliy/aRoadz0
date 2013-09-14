@@ -1,5 +1,25 @@
 <resources>
     
+  	<string name="start">Start service</string>
+    <string name="stop">Stop service</string>
+    
+<!--     Graph  		-->      
+	<string name="x">X: </string>
+    <string name="y">Y: </string>
+    <string name="z">Z: </string>    
+    
+<!--     Notification  		-->  
+    <string name="notificationtitle">aRoadz2 service is running</string>
+    <string name="notificationtext">Collecting data</string>
+    <string name="notificationticker">aRoadz2 service is started</string>
+    <string name="customnotificationtitle">Android Notification Tutorial</string>
+    <string name="customnotificationtext">Custom Notification Text</string>
+    <string name="customnotificationticker">aRoadz2 datacollection started</string>
+    <string name="lbltitle">"Title : "</string>
+    <string name="lbltext">"Text : "</string>
+    <string name="notification">Notification</string>
+    <string name="customnotification">Custom Notification</string>
+    
     
     <string name="service_name">aRoadz Service</string>
 <!--     Default Text  		-->

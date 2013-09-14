@@ -11,7 +11,7 @@
  
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/aroadz_icon"
         android:label="@string/app_name"
         android:theme="@style/Theme.Sherlock.Light" >
         <activity
@@ -19,29 +19,18 @@
             android:uiOptions="splitActionBarWhenNarrow" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
- 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+   
         
+        <activity android:name=".NotificationView" >
+        </activity>
         
-        
-        
-         <service
-            android:name=".LocalWordService"
-            android:icon="@drawable/ic_launcher"
-            android:label="@string/service_name" >
+        <service android:name="MyService"
+            	 android:process=":aRoadzService">
+            
         </service>
-
-        <receiver android:name="MyScheduleReceiver" >
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name="MyStartServiceReceiver" >
-        </receiver>
-        
-        
         
     </application>
  
