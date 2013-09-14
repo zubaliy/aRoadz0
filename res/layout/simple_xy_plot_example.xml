@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-     <com.androidplot.xy.XYPlot
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android">
+ 
+    <com.androidplot.xy.XYPlot
             android:id="@+id/mySimpleXYPlot"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -28,46 +25,4 @@
             androidPlot.legendWidget.heightMetric.value="25dp"
             androidPlot.legendWidget.positionMetrics.anchor="right_bottom"
             androidPlot.graphWidget.gridLinePaint.color="#000000"/>
-    
-    <RelativeLayout 
-        android:id="@+id/Labels"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
- 
-        <TextView
-            android:id="@+id/x_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="@string/x"
-            android:textColor="@color/accX" />
- 
-        <TextView
-            android:id="@+id/y_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/x_label"
-            android:text="@string/y"
-            android:textColor="@color/accY" />
- 
-        <TextView
-            android:id="@+id/z_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/y_label"
-            android:text="@string/z"
-            android:textColor="@color/accZ" />
-       
-    </RelativeLayout>
-        
-    <FrameLayout
-        android:id="@+id/frame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/Labels" >
- 
-	</FrameLayout>
- 
-</RelativeLayout>
+</LinearLayout>
