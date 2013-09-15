@@ -6,7 +6,7 @@
     android:versionName="1.0" >
  
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="9"
         android:targetSdkVersion="17" />
  
     <application
@@ -16,15 +16,12 @@
         android:theme="@style/Theme.Sherlock.Light" >
         <activity
             android:name=".MainActivity"
-            android:uiOptions="splitActionBarWhenNarrow" >
+            android:uiOptions="splitActionBarWhenNarrow" 
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-   
-        
-        <activity android:name=".NotificationView" >
         </activity>
         
         <service android:name="MyService"

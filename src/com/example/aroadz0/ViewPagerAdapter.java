@@ -22,16 +22,16 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             FragmentTab_Home fragmenttab1 = new FragmentTab_Home();
             return fragmenttab1;
  
-        // Open FragmentTab2.java
-        case 1:
-            FragmentTab_Graph fragmenttab2 = new FragmentTab_Graph();
-            return fragmenttab2;
- 
         // Open FragmentTab3.java
-        case 2:
+        case 1:
         	FragmentTab_Map fragmenttab3 = new FragmentTab_Map();
             return fragmenttab3;
-        
+            
+        // Open FragmentTab2.java
+        case 2:
+            FragmentTab_Graph fragmenttab2 = new FragmentTab_Graph();
+            return fragmenttab2;
+            
 	     // Open FragmentTab4.java
 	    case 3:
 	    	FragmentTab_Profile fragmenttab4 = new FragmentTab_Profile();

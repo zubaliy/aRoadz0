@@ -33,7 +33,7 @@ public class MainActivity extends SherlockFragmentActivity {
         super.onCreate(savedInstanceState);
         // Get the view from activity_main.xml
         setContentView(R.layout.activity_main);
-        
+       
      // Activate Navigation Mode Tabs
         mActionBar = getSupportActionBar();
         mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -88,11 +88,11 @@ public class MainActivity extends SherlockFragmentActivity {
         mActionBar.addTab(tab);
  
         // Create second Tab
-        tab = mActionBar.newTab().setText("Graph").setTabListener(tabListener);
+        tab = mActionBar.newTab().setText("Map").setTabListener(tabListener);
         mActionBar.addTab(tab);
  
         // Create third Tab
-        tab = mActionBar.newTab().setText("Map").setTabListener(tabListener);
+        tab = mActionBar.newTab().setText("Graph").setTabListener(tabListener);
         mActionBar.addTab(tab);
         
         // Create firth Tab
