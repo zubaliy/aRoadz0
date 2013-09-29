@@ -6,12 +6,21 @@
             android:showAsAction="ifRoom|withText"
             android:onClick="mnHelp"
     />
+    
     <item   android:id="@+id/menuLike"
             android:title="Like" 
             android:icon="@drawable/like_button"
             android:showAsAction="ifRoom|withText"
             android:onClick="mnLike"
     />
+    
+    <item   android:id="@+id/menuGps"
+            android:title="Gps" 
+            android:icon="@drawable/gps_off"
+            android:showAsAction="ifRoom|withText"
+            android:onClick="mnGps"
+    />
+    
     <item   android:id="@+id/menuExit"
             android:title="Exit" 
             android:showAsAction="ifRoom|withText"

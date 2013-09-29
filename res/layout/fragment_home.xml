@@ -2,38 +2,74 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="horizontal" 
+    android:baselineAligned="false">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:layout_weight="1"
+        android:gravity="left"
+        android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" >
-    </Button>
+        <Button
+            android:id="@+id/btnServiceStart"
+            android:layout_width="match_parent"
+            android:layout_height="80dip"
+            android:text="@string/start" >
+        </Button>
 
+        <Button
+            android:id="@+id/btnServiceStop"
+            android:layout_width="match_parent"
+            android:layout_height="80dip"
+            android:text="@string/stop" >
+        </Button>
 
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" >
+        </ProgressBar>
 
-    <Button
-        android:id="@+id/btnServiceStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/start">
-    </Button>
-    <Button
-        android:id="@+id/btnServiceStop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/stop">
-    </Button>
-    <ProgressBar 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminate="true">
-    </ProgressBar>
-    
+        <ToggleButton
+            android:id="@+id/btnt_write"
+            android:layout_width="match_parent"
+            android:layout_height="80dip"
+            android:text="@string/btnt_write"
+            android:textOff="@string/btnt_write_off"
+            android:textOn="@string/btnt_write_on"
+            android:textSize="18sp"
+            android:typeface="sans" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:orientation="vertical" >
+
+        <ToggleButton
+            android:id="@+id/btnt_gps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:text="@string/btn_gps"
+            
+            android:textOff="@string/btn_gps_OFF"
+            android:textOn="@string/btn_gps_ON" />
+
+        <TextView
+            android:id="@+id/console"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLines="23"
+            android:scrollbars="vertical"
+            android:text="" />
+
+    </LinearLayout>
+
 </LinearLayout>

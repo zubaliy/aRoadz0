@@ -3,6 +3,15 @@
   	<string name="start">Start service</string>
     <string name="stop">Stop service</string>
     
+    
+<!-- 		TAB Home		 -->
+	<string name="btn_gps">GPS</string>
+	<string name="btn_gps_ON">GPS</string>
+    <string name="btn_gps_OFF">GPS</string>  
+    <string name="btnt_write">Write Enable</string>
+    <string name="btnt_write_on">Write Enabled</string>
+    <string name="btnt_write_off">Write Disabled</string>  
+    
 <!--     Graph  		-->      
 	<string name="x">X: </string>
     <string name="y">Y: </string>
@@ -20,28 +29,27 @@
     <string name="notification">Notification</string>
     <string name="customnotification">Custom Notification</string>
     
-    
+<!--     Service	  		-->      
     <string name="service_name">aRoadz Service</string>
+    
 <!--     Default Text  		-->
-    <string name="app_name">aRoadz0</string>
+    <string name="app_name">aRoadz: bicycle road quality monitoring</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="ActionBarSherlock">ActionBarSherlock Tutorial</string>
 
 
 
     <string name="hey_andrei">Hey Andrei!</string>
     <string name="title_activity_main">aRoadz</string>
-    <string name="gps_enabled">GPS is Enabled</string>
-    <string name="gps_disabled">GPS is Disabled</string>
+
     
 <!--     Default Text on Buttons 		-->
     <string name="btn_internet">Internet</string>
     
     <string name="btn_record_off">Start to record</string>
     <string name="btn_record_on">Recording</string>
-    <string name="btn_gps">GPS</string>
+    
     <string name="btn_upload">Upload Data</string>
     <string name="btn_login">Login</string>
     <string name="btn_calibrate">Remove offset</string>

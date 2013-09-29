@@ -1,4 +1,5 @@
-package com.example.aroadz0;
+package com.andrei.aroadz0.activity;
+
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class ViewPagerAdapter extends FragmentPagerAdapter {
  
     // Declare the number of ViewPager pages
-    final int PAGE_COUNT = 5;
+    final int PAGE_COUNT = 4;
  
     public ViewPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -38,9 +39,9 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 	        return fragmenttab4;
 	    
 		 // Open FragmentTab5.java
-		case 4:
-			FragmentTab_About fragmenttab5 = new FragmentTab_About();
-		    return fragmenttab5;
+//		case 4:
+//			FragmentTab_About fragmenttab5 = new FragmentTab_About();
+//		    return fragmenttab5;
 		}
         return null;
     }

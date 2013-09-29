@@ -1,7 +1,10 @@
-package com.example.aroadz0;
+package com.andrei.aroadz0.controller;
 
 import java.util.Observable;
 
+import com.andrei.aroadz0.MainActivity;
+import com.andrei.aroadz0.model.Data;
+import com.andrei.aroadz0.utils.Config;
 
 
 import android.app.Activity;
@@ -11,6 +14,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.opengl.Matrix;
+import android.util.Log;
 
 
 
@@ -20,36 +24,50 @@ public class Accelerometer extends Observable implements SensorEventListener {
 	
 	private static final String TAG = "zAcc";
 	
+	private Data mData = null;
+
     private SensorManager sensorManager = null;
-    private Sensor accelerometer, acceleration, gravity, gyroscope, magneticfield;
-    private int SENSOR_DELAY = SensorManager.SENSOR_DELAY_FASTEST;
+    private Sensor accelerometer, acceleration, gravity, gyroscope, magneticfield = null;
      
 	private float[] zrotationMatrix = new float[16];
-	private float[] dlin_acc = new float[3]; ;
+	private float[] dlin_acc = new float[3]; 
+	private float[] dlin_accR = new float[3]; 
 	private float[] dgravity = new float[3];
 	private float[] dmagfield = new float[3];
 	
 
-	public Accelerometer(Activity activity){
 
-		sensorManager = (SensorManager) activity.getApplicationContext().getSystemService(Context.SENSOR_SERVICE);
+	public Accelerometer(Context context){
+		mData = new Data();
+		
+		sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 
 		acceleration = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 		gravity = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
 		magneticfield = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
-        addListeners();
+        //addListeners();
+        Log.d(TAG, "Accelerometer()");
 	}
-    
-	private void addListeners() {
-		sensorManager.registerListener(this, acceleration, SENSOR_DELAY );
-        sensorManager.registerListener(this, gravity, SENSOR_DELAY );
-        sensorManager.registerListener(this, magneticfield, SENSOR_DELAY );
-		
+	
+
+	
+	public void addListeners() {
+			
+			sensorManager.registerListener(this, acceleration, Config.SENSOR_DELAY );
+	        sensorManager.registerListener(this, gravity, Config.SENSOR_DELAY );
+	        sensorManager.registerListener(this, magneticfield, Config.SENSOR_DELAY );	
+	        
+	        Log.d(TAG, "addListeners() ");
+
 	}
 	
 	public void removeListeners() {
-		sensorManager.unregisterListener(this);
+
+			sensorManager.unregisterListener(this);
+			
+			Log.d(TAG, "removeListeners() ");
+
 	}
 	
     @Override
@@ -65,12 +83,15 @@ public class Accelerometer extends Observable implements SensorEventListener {
     	
     	if(event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
 	        dlin_acc = event.values.clone();
+    	
+	        dlin_accR = z_computeOrientation(dlin_acc);
+	    	
+	    	mData.setAccxyzaR(dlin_accR);
+	    	
+	    	setChanged();
+	        notifyObservers(mData);
+	        //Log.d(TAG, "onSensorChanged()");       
     	}
-    	
-    	z_computeOrientation();
-    	
-    	setChanged();
-        notifyObservers();
     }
  
     @Override
@@ -78,13 +99,13 @@ public class Accelerometer extends Observable implements SensorEventListener {
         // Not interested in this event
     }
     
-    private void z_computeOrientation() {
+    private float[] z_computeOrientation(float[] dlin_acc) {
     	
     	if (SensorManager.getRotationMatrix(zrotationMatrix, null, dgravity, dmagfield) ){ 	}
      
     	android.opengl.Matrix.invertM(zrotationMatrix, 0, zrotationMatrix, 0);
     	
-    	dlin_acc = remap(dlin_acc);
+    	return remap(dlin_acc);
     	
     }
 	
@@ -101,8 +122,12 @@ public class Accelerometer extends Observable implements SensorEventListener {
 		return resultVec;
 	}
 	
-	public void addMyObserver(Activity ac) {
-		this.addObserver(ac);
+
+	
+	@Override
+	public void notifyObservers(Object data) {
+		// TODO Auto-generated method stub
+		super.notifyObservers(data);
 	}
 	
 }

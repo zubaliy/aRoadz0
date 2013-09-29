@@ -1,4 +1,4 @@
-package com.example.aroadz0;
+package com.andrei.aroadz0.activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.andrei.aroadz0.R;
 
 
 	 
