@@ -34,6 +34,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.andrei.aroadz0.activity.ViewPagerAdapter;
 import com.andrei.aroadz0.controller.Gps;
 import com.andrei.aroadz0.utils.Config;
+import com.andrei.aroadz0.utils.Toasts;
 import com.andrei.aroadz0.R;
 
 
@@ -143,7 +144,7 @@ public class MainActivity extends SherlockFragmentActivity {
 //        tab = mActionBar.newTab().setText("About").setTabListener(tabListener);
 //        mActionBar.addTab(tab);
         
-        
+       
 
         Log.d(LOG_TAG, "App started");
     }
@@ -168,20 +169,33 @@ public class MainActivity extends SherlockFragmentActivity {
         return super.onCreateOptionsMenu(menu);
     }
     
-    public void mnHelp(MenuItem item) {
-    	Toast.makeText(this, "Help", Toast.LENGTH_SHORT).show();
-    }
-    public void mnLike(MenuItem item) {
-    	Toast.makeText(this, "Like", Toast.LENGTH_SHORT).show();
-    }
-    public void mnGps(MenuItem item) {
-    	
-    	isGpsEnabled();
-    	showGpsSettingsAlert();
+	public void mnHelp(MenuItem item) {
+		Toast.makeText(this, "Help", Toast.LENGTH_SHORT).show();
+	}
 
-    }
+	public void mnLike(MenuItem item) {
+		Toast.makeText(this, "Like", Toast.LENGTH_SHORT).show();
+	}
+
+	public void mnGps(MenuItem item) {
+		isGpsEnabled();
+		showGpsSettingsAlert();
+	}
+
+	public void mnStart(MenuItem item) {
+		if (isMyServiceRunning()) {
+			Config.stopService();
+		} else if(isGpsEnabled()) {
+			Config.startService();
+		} else {
+			Toasts.showError("Please turn on your GPS.");
+		}		
+		isMyServiceRunning();
+	}
+    
+    
     public void mnExit(MenuItem item) {
-    	Toast.makeText(this, "aRoadz has stopped", Toast.LENGTH_SHORT).show();
+    	Toast.makeText(this, "aRoadz is stopped", Toast.LENGTH_SHORT).show();
     	// Disappear from screen. Activity is still running. Same as pressing Home-button. 
     	finish();
     	// killing Activity-process. Service is still running
@@ -264,6 +278,19 @@ public class MainActivity extends SherlockFragmentActivity {
 	    	}
 		return isGpsEnabled;
     }
+    
+    private boolean isMyServiceRunning() {
+    	boolean isEnabled = Config.isMyServiceRunning();
+	    	if(menu != null){
+		    	MenuItem item = (MenuItem) menu.findItem(R.id.menuStart);	
+		    	if ( isEnabled ) {
+		    		item.setIcon(R.drawable.start_on);	
+		    	} else {
+		    		item.setIcon(R.drawable.start_off);
+		    	}
+	    	}
+		return isEnabled;
+    }
 
 
 	@Override
@@ -276,6 +303,7 @@ public class MainActivity extends SherlockFragmentActivity {
 	protected void onResume() {
 		Log.d(LOG_TAG, "onResume()");
 		isGpsEnabled();
+		isMyServiceRunning();
 		super.onResume();
 	}
 	

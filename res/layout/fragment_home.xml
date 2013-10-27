@@ -52,15 +52,12 @@
         android:gravity="right"
         android:orientation="vertical" >
 
-        <ToggleButton
-            android:id="@+id/btnt_gps"
+        <Button
+            android:id="@+id/btn_upload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right|top"
-            android:text="@string/btn_gps"
-            
-            android:textOff="@string/btn_gps_OFF"
-            android:textOn="@string/btn_gps_ON" />
+            android:text="@string/btn_upload" />
 
         <TextView
             android:id="@+id/console"

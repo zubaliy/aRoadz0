@@ -14,8 +14,11 @@ import android.widget.ToggleButton;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.andrei.aroadz0.R;
 import com.andrei.aroadz0.utils.Toasts;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -27,15 +30,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 		
 		private View view = null;
 		
-	    private ToggleButton btnt_gps = null;
-
 		private GoogleMap googleMap = null;
 
 
-
-		
-		
-		
 		@Override
 	    public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	            Bundle savedInstanceState) {
@@ -54,7 +51,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 	            view = inflater.inflate(R.layout.fragment_map, container, false);
 	        } catch (InflateException e) {
 	            /* map is already there, just return view as it is */
-	        	Log.d(LOG_TAG, "InflateException");
+	        	Log.d(LOG_TAG, "InflateException: map is already there, just return view as it is ");
 	        }
 	        
 
@@ -70,7 +67,21 @@ import com.google.android.gms.maps.model.MarkerOptions;
 	    private void initilizeMap() {
 	    	if (googleMap  == null) {
 	            googleMap = ((SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-	            googleMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)));
+	            MarkerOptions marker = new MarkerOptions().position(new LatLng(0, 0)).title("Hello World!");
+	            googleMap.addMarker(marker);
+	            
+	            googleMap.setMyLocationEnabled(true);
+	            googleMap.getUiSettings().setCompassEnabled(true);
+	            googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+	            googleMap.getUiSettings().setZoomControlsEnabled(true);
+	            
+	            
+	            LatLng latLng = new LatLng(50, 4);
+	            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 4);
+	            googleMap.animateCamera(cameraUpdate);
+	            
+	            
+	            
 	            // check if map is created successfully or not
 	            if (googleMap == null) {
 	                Toast.makeText(getActivity().getApplicationContext(), "Sorry! unable to create maps", Toast.LENGTH_SHORT).show();
@@ -86,23 +97,16 @@ import com.google.android.gms.maps.model.MarkerOptions;
 	    }
 	    
 		@Override
-		public void onCheckedChanged(CompoundButton buttonView,
-				boolean isChecked) {
+		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 			
 			switch(buttonView.getId()){
-				case R.id.btnt_gps:
-					occBtntGps(isChecked);
-					break;
+
 				default:
 					break;
 			}
 		}
 
-		private void occBtntGps(boolean isChecked) {
-			Toasts.showGreenMessage("KLIK");
-			btnt_gps.setChecked(false);
-			
-		}
+
 		
 		@Override
 	    public void onDestroyView() {

@@ -2,8 +2,10 @@ package com.andrei.aroadz0.controller;
 
 import java.util.Observable;
 
+
 import com.andrei.aroadz0.MainActivity;
 import com.andrei.aroadz0.model.Data;
+import com.andrei.aroadz0.model.User;
 import com.andrei.aroadz0.utils.Config;
 
 
@@ -27,7 +29,7 @@ public class Accelerometer extends Observable implements SensorEventListener {
 	private Data mData = null;
 
     private SensorManager sensorManager = null;
-    private Sensor accelerometer, acceleration, gravity, gyroscope, magneticfield = null;
+    private Sensor acceleration, gravity, magneticfield = null; //accelerometer,gyroscope
      
 	private float[] zrotationMatrix = new float[16];
 	private float[] dlin_acc = new float[3]; 
@@ -45,6 +47,8 @@ public class Accelerometer extends Observable implements SensorEventListener {
 		acceleration = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
 		gravity = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
 		magneticfield = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+		
+		setUserDetails();
 
         //addListeners();
         Log.d(TAG, "Accelerometer()");
@@ -90,7 +94,7 @@ public class Accelerometer extends Observable implements SensorEventListener {
 	    	
 	    	setChanged();
 	        notifyObservers(mData);
-	        //Log.d(TAG, "onSensorChanged()");       
+	        Log.d(TAG, "onSensorChanged() " + dlin_accR[0]);       
     	}
     }
  
@@ -120,6 +124,24 @@ public class Accelerometer extends Observable implements SensorEventListener {
 		Matrix.multiplyMV(resultVec, 0, zrotationMatrix, 0, dacc, 0);
 		
 		return resultVec;
+	}
+	
+	private void setUserDetails () {
+		getAccDetails();
+	}
+	
+	public String[] getAccDetails() {
+		
+	    User user = User.getInstance();
+        user.setAcc_maximum_range(Float.toString(acceleration.getMaximumRange()));
+        user.setAcc_resolution(Float.toString(acceleration.getResolution()));
+        user.setAcc_min_delay(Float.toString(acceleration.getMinDelay())); 
+        user.setAcc_power(Float.toString(acceleration.getPower()));
+        user.setAcc_vendor(acceleration.getVendor());
+        user.setAcc_version(Float.toString(acceleration.getVersion()));
+        user.setAcc_type(Float.toString(acceleration.getType()));
+        user.commit();
+		return null;
 	}
 	
 

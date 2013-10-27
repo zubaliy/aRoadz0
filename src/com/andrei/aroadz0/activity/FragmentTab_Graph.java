@@ -9,6 +9,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.andrei.aroadz0.controller.Accelerometer;
 import com.andrei.aroadz0.controller.DataCombiner;
 import com.andrei.aroadz0.model.Graph;
+import com.andrei.aroadz0.model.User;
 import com.andrei.aroadz0.R;
 
 
@@ -34,8 +35,6 @@ import com.andrei.aroadz0.R;
    
 	        acc = new Accelerometer(getActivity().getApplicationContext());
 	        acc.addObserver(graph);
-	        //datacomb = new DataCombiner(getActivity().getApplicationContext());
-	        //datacomb.addObserver(graph);
 
 	        Log.i(LOG_TAG, "onCreateView()");
 	        return view;

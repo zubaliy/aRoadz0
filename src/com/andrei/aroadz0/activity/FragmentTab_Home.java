@@ -1,18 +1,13 @@
 package com.andrei.aroadz0.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.provider.Settings;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +24,7 @@ import com.actionbarsherlock.app.SherlockFragment;
  * 
  */
 import com.andrei.aroadz0.R;
+import com.andrei.aroadz0.controller.Uploader;
 import com.andrei.aroadz0.service.MyService;
 import com.andrei.aroadz0.utils.Config;
 import com.andrei.aroadz0.utils.Toasts;
@@ -40,7 +36,8 @@ import com.andrei.aroadz0.utils.Toasts;
 	    private Button btnServiceStart;
 	    private Button btnServiceStop;
 	    
-	    private ToggleButton btnt_gps;
+	    private Button btn_upload;
+	    
 	    private ToggleButton btnt_write;
 	 
 	    private TextView console = null;
@@ -63,8 +60,8 @@ import com.andrei.aroadz0.utils.Toasts;
 	        View view = inflater.inflate(R.layout.fragment_home, container, false);
 	        
 
-	        btnt_gps = (ToggleButton) view.findViewById(R.id.btnt_gps);
-	        btnt_gps.setOnCheckedChangeListener(this);
+	        btn_upload = (Button) view.findViewById(R.id.btn_upload);
+	        btn_upload.setOnClickListener(this);
 	        
 	        btnServiceStart = (Button) view.findViewById(R.id.btnServiceStart);
 	        btnServiceStart.setOnClickListener(this);
@@ -99,19 +96,22 @@ import com.andrei.aroadz0.utils.Toasts;
 				case R.id.btnServiceStop:
 					ocServiceStop();
 					break;
+				case R.id.btn_upload:
+					occBtnUpload();
+					break;
 				default:
 					break;
 			}
 		}
 		
+
+
 		@Override
 		public void onCheckedChanged(CompoundButton buttonView,
 				boolean isChecked) {
 			
 			switch(buttonView.getId()){
-				case R.id.btnt_gps:
-						occBtntGps(isChecked);
-						break;
+
 				case R.id.btnt_write:
 						occBtntWrite(isChecked);
 						break;
@@ -124,10 +124,9 @@ import com.andrei.aroadz0.utils.Toasts;
 		private void occBtntWrite(boolean isChecked) {
 
 			Config.write = !Config.write;
-			setText(""+Config.write);
+			console.setText(console.getText() + "\n" + Config.write);
 			
 			sendBR();
-			
 		}
 		
 		private void sendBR(){
@@ -137,28 +136,22 @@ import com.andrei.aroadz0.utils.Toasts;
 	        getActivity().sendBroadcast(intent);
 		}
 
-		private void occBtntGps(boolean isChecked) {
-			Toasts.showGreenMessage("KLIK");
-			btnt_gps.setChecked(false);
-			
+		private void occBtnUpload() {
+			Uploader.getInstance().httpPostAllFilesInFolder();
 		}
 
+
 		private void ocServiceStart() {
-			
-			if(true){
-				
 				if(!(locman.isProviderEnabled(LocationManager.GPS_PROVIDER))) {
-					showSettingsAlert();
+					//showSettingsAlert();
 				} else {
+					//
+				}
 					Intent i = new Intent(getActivity(), MyService.class);
 					i.putExtra("write", Config.write);
 					getActivity().startService(i);
-				}
-				
 				
 				sendBR();
-		
-			}
 		}
 		
 		private void ocServiceStop() {

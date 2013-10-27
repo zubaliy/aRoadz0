@@ -20,6 +20,12 @@
             android:showAsAction="ifRoom|withText"
             android:onClick="mnGps"
     />
+    <item   android:id="@+id/menuStart"
+            android:title="Start" 
+            android:icon="@drawable/start_off"
+            android:showAsAction="ifRoom|withText"
+            android:onClick="mnStart"
+    />
     
     <item   android:id="@+id/menuExit"
             android:title="Exit" 
